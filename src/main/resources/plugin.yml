@@ -1,0 +1,6 @@
+name: SMPTradingHouse
+version: ${project.version}
+main: smptradinghouse.smptradinghouse.SMPTradingHouse
+api-version: 1.13
+authors: [super]
+description: The workings of TotalFreedom SMP's Trading House.
