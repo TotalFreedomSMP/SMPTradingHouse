@@ -54,12 +54,12 @@ public class SPlayer
     {
         if (plugin.players.contains(player.getName().toLowerCase()))
         {
-            SLog.info("Creating player data entry for " + player.getName());
             return new SPlayer(player,
                     plugin.players.getInt(player.getName().toLowerCase() + ".purchaseCount"),
                     plugin.players.getInt(player.getName().toLowerCase() + ".sellCount"),
                     plugin.players.getIntegerList(player.getName().toLowerCase() + ".tradeIDs"));
         }
+        SLog.info("Creating player data entry for " + player.getName());
         return new SPlayer(player, 0, 0, new ArrayList<>());
     }
 }
