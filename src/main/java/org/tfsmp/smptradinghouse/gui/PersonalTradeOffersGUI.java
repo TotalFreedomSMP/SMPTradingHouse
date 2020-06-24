@@ -35,7 +35,6 @@ public class PersonalTradeOffersGUI extends GUI
             ItemStack offer;
             try
             {
-                SLog.info(item.getOfferAmount());
                 offer = item.getOffers().get(i);
             }
             catch (IndexOutOfBoundsException ex)

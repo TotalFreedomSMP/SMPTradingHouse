@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.tfsmp.smptradinghouse.SMPTradingHouse;
 
+import java.util.ArrayList;
+
 public class Command_cleartradeids implements CommandExecutor
 {
     private static SMPTradingHouse plugin = SMPTradingHouse.getPlugin();
@@ -28,7 +30,7 @@ public class Command_cleartradeids implements CommandExecutor
             sender.sendMessage(ChatColor.GRAY + "That name does not have data.");
             return true;
         }
-        plugin.players.set(name.toLowerCase() + ".tradeIDs", null);
+        plugin.players.set(name.toLowerCase() + ".tradeIDs", new ArrayList<>());
         plugin.players.save();
         sender.sendMessage(ChatColor.GREEN + "Cleared all trade IDs from the name: " + name);
         return true;

@@ -3,13 +3,11 @@ package org.tfsmp.smptradinghouse.item;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.tfsmp.smptradinghouse.SMPTradingHouse;
 import org.tfsmp.smptradinghouse.player.SPlayer;
-import org.tfsmp.smptradinghouse.util.SLog;
 import org.tfsmp.smptradinghouse.util.SUtil;
 
 import java.util.ArrayList;
@@ -96,6 +94,11 @@ public class TItem
         meta.setLore(lore);
         modified.setItemMeta(meta);
         return modified;
+    }
+
+    public boolean inConfig()
+    {
+        return plugin.trading.contains(String.valueOf(id));
     }
 
     public static TItem getItem(int id)

@@ -87,7 +87,14 @@ public class GUIInteraction implements Listener
         {
             if (!stack.getItemMeta().hasLore())
                 return;
-            new TradeOfferGUI(TItem.getItem(Integer.parseInt(stack.getItemMeta().getLore().get(stack.getItemMeta().getLore().size() - 1).substring(6)))).open(player);
+            TItem item = TItem.getItem(Integer.parseInt(stack.getItemMeta().getLore().get(stack.getItemMeta().getLore().size() - 1).substring(6)));
+            if (item == null)
+            {
+                player.closeInventory();
+                player.sendMessage(ChatColor.RED + "That item cannot be found.");
+                return;
+            }
+            new TradeOfferGUI(item).open(player);
             return;
         }
         if (stack.getItemMeta().hasDisplayName())
@@ -167,6 +174,12 @@ public class GUIInteraction implements Listener
                     }
                 }
                 TItem item = TItem.getItem(Integer.parseInt(inv.getItem(4).getItemMeta().getLore().get(inv.getItem(4).getItemMeta().getLore().size() - 1).substring(6)));
+                if (item == null)
+                {
+                    player.closeInventory();
+                    player.sendMessage(ChatColor.RED + "That item cannot be found.");
+                    return;
+                }
                 if (item.getOfferAmount() == 7)
                 {
                     player.closeInventory();
@@ -205,7 +218,12 @@ public class GUIInteraction implements Listener
         if (PersonalTradesGUI.ITEMS.contains(e.getSlot()))
         {
             TItem item = TItem.getItem(Integer.parseInt(stack.getItemMeta().getLore().get(stack.getItemMeta().getLore().size() - 1).substring(6)));
-            SLog.info(item.getId());
+            if (item == null)
+            {
+                player.closeInventory();
+                player.sendMessage(ChatColor.RED + "That item cannot be found.");
+                return;
+            }
             new PersonalTradeOffersGUI(item).open(player);
         }
         if (!stack.hasItemMeta())
@@ -324,11 +342,11 @@ public class GUIInteraction implements Listener
                     }
                 }
                 int time = 0;
-                if (inv.getItem(21).getType() == Material.GREEN_WOOL)
+                if (inv.getItem(21).getType() == Material.LIME_WOOL)
                     time = 1800;
-                if (inv.getItem(22).getType() == Material.GREEN_WOOL)
+                if (inv.getItem(22).getType() == Material.LIME_WOOL)
                     time = 21600;
-                if (inv.getItem(23).getType() == Material.GREEN_WOOL)
+                if (inv.getItem(23).getType() == Material.LIME_WOOL)
                     time = 86400;
                 TItem item = TItem.createItem(trading, time, player);
                 item.saveData();
@@ -377,6 +395,12 @@ public class GUIInteraction implements Listener
         if (PersonalTradeOffersGUI.ITEMS.contains(e.getSlot()))
         {
             TItem item = TItem.getItem(Integer.parseInt(e.getView().getTitle().substring(21)));
+            if (item == null)
+            {
+                player.closeInventory();
+                player.sendMessage(ChatColor.RED + "That item cannot be found.");
+                return;
+            }
             new DetermineTradeOfferGUI(item, inv.getItem(e.getRawSlot())).open(player);
             return;
         }
@@ -414,6 +438,12 @@ public class GUIInteraction implements Listener
                 SPlayer requester = SPlayer.getOfflinePlayer(req);
                 int id = Integer.parseInt(inv.getItem(12).getItemMeta().getLore().get(inv.getItem(12).getItemMeta().getLore().size() - 1).substring(6));
                 TItem tiOut = TItem.getItem(id);
+                if (tiOut == null)
+                {
+                    player.closeInventory();
+                    player.sendMessage(ChatColor.RED + "That item cannot be found.");
+                    return;
+                }
                 ItemStack out = tiOut.getItem();
                 ItemStack in = inv.getItem(14).clone();
                 ItemMeta inMeta = in.getItemMeta();
@@ -423,14 +453,8 @@ public class GUIInteraction implements Listener
                 in.setItemMeta(inMeta);
 
                 sPlayer.addPickupItem(in);
-
-                SLog.info("removeTrade -- start");
                 sPlayer.removeTrade(tiOut);
-                SLog.info("removeTrade -- stop");
-
-                SLog.info("saveData -- start");
                 sPlayer.saveData();
-                SLog.info("saveData -- stop");
 
                 requester.addPickupItem(out);
                 tiOut.delete();
@@ -447,6 +471,12 @@ public class GUIInteraction implements Listener
             {
                 int id = Integer.parseInt(inv.getItem(12).getItemMeta().getLore().get(inv.getItem(12).getItemMeta().getLore().size() - 1).substring(6));
                 TItem ti = TItem.getItem(id);
+                if (ti == null)
+                {
+                    player.closeInventory();
+                    player.sendMessage(ChatColor.RED + "That item cannot be found.");
+                    return;
+                }
                 ItemStack reverted = inv.getItem(14).clone();
                 ItemMeta rMeta = reverted.getItemMeta();
                 List<String> rLore = rMeta.getLore();

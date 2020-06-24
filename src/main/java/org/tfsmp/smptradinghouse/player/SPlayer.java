@@ -47,10 +47,8 @@ public class SPlayer
 
     public void saveData()
     {
-        SLog.info("HELLO");
         if (name != null)
         {
-            SLog.info("a");
             plugin.players.set(name.toLowerCase() + ".name", name);
             plugin.players.set(name.toLowerCase() + ".purchaseCount", purchaseCount);
             plugin.players.set(name.toLowerCase() + ".sellCount", sellCount);
@@ -59,7 +57,6 @@ public class SPlayer
             plugin.players.save();
             return;
         }
-        SLog.info("b");
         plugin.players.set(player.getName().toLowerCase() + ".name", player.getName());
         plugin.players.set(player.getName().toLowerCase() + ".purchaseCount", purchaseCount);
         plugin.players.set(player.getName().toLowerCase() + ".sellCount", sellCount);
@@ -75,9 +72,7 @@ public class SPlayer
 
     public void removeTrade(TItem item)
     {
-        SLog.info("removeTrade: " + tradeIDs.size());
         tradeIDs.remove(new Integer(item.getId()));
-        SLog.info("removeTrade: " + tradeIDs.size());
     }
 
     public void addPickupItem(ItemStack stack)
@@ -98,7 +93,7 @@ public class SPlayer
                     null,
                     plugin.players.getInt(player.getName().toLowerCase() + ".purchaseCount"),
                     plugin.players.getInt(player.getName().toLowerCase() + ".sellCount"),
-                    plugin.players.getIntegerList(player.getName().toLowerCase() + ".tradeIDs"),
+                    (List<Integer>) plugin.players.getList(player.getName().toLowerCase() + ".tradeIDs"),
                     (List<ItemStack>) plugin.players.getList(player.getName().toLowerCase() + ".pickup"));
         }
         SLog.info("Creating player data entry for " + player.getName());
@@ -113,7 +108,7 @@ public class SPlayer
                 name,
                 plugin.players.getInt(name.toLowerCase() + ".purchaseCount"),
                 plugin.players.getInt(name.toLowerCase() + ".sellCount"),
-                plugin.players.getIntegerList(name.toLowerCase() + ".tradeIDs"),
+                (List<Integer>) plugin.players.getList(name.toLowerCase() + ".tradeIDs"),
                 (List<ItemStack>) plugin.players.getList(name.toLowerCase() + ".pickup"));
     }
 }
