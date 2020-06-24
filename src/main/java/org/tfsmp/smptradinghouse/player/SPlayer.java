@@ -97,7 +97,9 @@ public class SPlayer
                     (List<ItemStack>) plugin.players.getList(player.getName().toLowerCase() + ".pickup"));
         }
         SLog.info("Creating player data entry for " + player.getName());
-        return new SPlayer(player, player.getName(), 0, 0, new ArrayList<>(), new ArrayList<>());
+        SPlayer sPlayer = new SPlayer(player, null, 0, 0, new ArrayList<>(), new ArrayList<>());
+        sPlayer.saveData();
+        return sPlayer;
     }
 
     public static SPlayer getOfflinePlayer(String name)

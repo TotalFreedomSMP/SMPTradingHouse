@@ -441,6 +441,7 @@ public class GUIInteraction implements Listener
                 SPlayer sPlayer = SPlayer.getPlayer(player);
 
                 String req = inv.getItem(14).getItemMeta().getLore().get(0).substring(15);
+                SLog.info(req);
                 SPlayer requester = SPlayer.getOfflinePlayer(req);
                 int id = Integer.parseInt(inv.getItem(12).getItemMeta().getLore().get(inv.getItem(12).getItemMeta().getLore().size() - 1).substring(6));
                 TItem tiOut = TItem.getItem(id);

@@ -11,6 +11,7 @@ import org.tfsmp.smptradinghouse.command.Command_tradinghousetest;
 import org.tfsmp.smptradinghouse.config.Config;
 import org.tfsmp.smptradinghouse.gui.GUIInteraction;
 import org.tfsmp.smptradinghouse.item.TItem;
+import org.tfsmp.smptradinghouse.player.JoinListener;
 import org.tfsmp.smptradinghouse.player.SPlayer;
 import org.tfsmp.smptradinghouse.util.SLog;
 
@@ -58,6 +59,7 @@ public final class SMPTradingHouse extends JavaPlugin
     {
         PluginManager manager = this.getServer().getPluginManager();
         manager.registerEvents(new GUIInteraction(), this);
+        manager.registerEvents(new JoinListener(), this);
     }
 
     private void startTimeRemainingClock()
