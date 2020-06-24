@@ -2,7 +2,9 @@ package org.tfsmp.smptradinghouse;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.tfsmp.smptradinghouse.command.Command_opentradinghouse;
+import org.tfsmp.smptradinghouse.command.Command_clearoffers;
+import org.tfsmp.smptradinghouse.command.Command_cleartradeids;
+import org.tfsmp.smptradinghouse.command.Command_opentradingmenu;
 import org.tfsmp.smptradinghouse.command.Command_tradinghousetest;
 import org.tfsmp.smptradinghouse.config.Config;
 import org.tfsmp.smptradinghouse.gui.GUIInteraction;
@@ -39,8 +41,10 @@ public final class SMPTradingHouse extends JavaPlugin
 
     private void loadCommands()
     {
-        this.getCommand("opentradinghouse").setExecutor(new Command_opentradinghouse());
+        this.getCommand("opentradingmenu").setExecutor(new Command_opentradingmenu());
         this.getCommand("tradinghousetest").setExecutor(new Command_tradinghousetest());
+        this.getCommand("clearoffers").setExecutor(new Command_clearoffers());
+        this.getCommand("cleartradeids").setExecutor(new Command_cleartradeids());
     }
 
     private void loadListeners()

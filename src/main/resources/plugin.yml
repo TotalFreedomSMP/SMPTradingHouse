@@ -5,7 +5,11 @@ api-version: 1.13
 authors: [super]
 description: The workings of TotalFreedom SMP's Trading House.
 commands:
-  opentradinghouse:
-    aliases: [oth]
+  opentradingmenu:
+    aliases: [otm]
   tradinghousetest:
     aliases: [tht]
+  clearoffers:
+    aliases: [cos]
+  cleartradeids:
+    aliases: [ctids]

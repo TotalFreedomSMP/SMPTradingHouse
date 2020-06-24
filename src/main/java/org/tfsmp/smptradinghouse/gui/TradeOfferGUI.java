@@ -20,7 +20,7 @@ public class TradeOfferGUI extends GUI
 
     public TradeOfferGUI(TItem item)
     {
-        super(ChatColor.DARK_AQUA + "Trade Offer", 27);
+        super(ChatColor.DARK_AQUA + "Create Trade Offer", 27);
         this.item = item;
         for (int b : blank)
         {
@@ -32,13 +32,14 @@ public class TradeOfferGUI extends GUI
         List<String> infoLore = new ArrayList<>();
         infoLore.add(ChatColor.GOLD + "Vendor: " + ChatColor.GREEN + item.getVendor());
         infoLore.add(ChatColor.GOLD + "Time remaining: " + ChatColor.GREEN + SUtil.formatTime(item.getTimeRemaining()));
+        infoLore.add(ChatColor.GOLD + "" + item.getOfferAmount() + " Offer" + (item.getOfferAmount() == 1 ? "" : "s"));
         infoLore.add(ChatColor.DARK_GRAY + "ID: " + item.getId());
         infoMeta.setLore(infoLore);
         info.setItemMeta(infoMeta);
         super.setSlot(4, info);
         super.setSlot(9, SUtil.createNamedItem(Material.LIME_WOOL, ChatColor.GREEN + "Submit"));
         super.setSlot(17, SUtil.createNamedItem(Material.RED_WOOL, ChatColor.RED + "Cancel"));
-        super.setSlot(11, new ItemStack(Material.RED_STAINED_GLASS_PANE));
+        super.setSlot(11, SUtil.createNamedItem(Material.RED_STAINED_GLASS_PANE, ChatColor.RED + "Click an item in!"));
         super.setSlot(15, item.getItem());
     }
 }

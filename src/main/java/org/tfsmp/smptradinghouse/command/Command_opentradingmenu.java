@@ -7,9 +7,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.tfsmp.smptradinghouse.gui.TradingHouseGUI;
+import org.tfsmp.smptradinghouse.gui.TradingMenuGUI;
 
-public class Command_opentradinghouse implements CommandExecutor
+public class Command_opentradingmenu implements CommandExecutor
 {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String c, String[] args)
@@ -31,7 +31,7 @@ public class Command_opentradinghouse implements CommandExecutor
             sender.sendMessage(ChatColor.GRAY + "Player not found.");
             return true;
         }
-        new TradingHouseGUI().open(player);
+        new TradingMenuGUI().open(player);
         return true;
     }
 }

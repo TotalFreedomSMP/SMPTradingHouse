@@ -54,18 +54,14 @@ public class TradingHouseGUI extends GUI
             }
             if (item == null)
                 continue;
-            ItemStack modified = item.getItem();
-            if (modified == null)
-                continue;
+            ItemStack modified = item.getItem().clone();
             ItemMeta meta = modified.getItemMeta();
             List<String> lore = meta.getLore() == null ? new ArrayList<>() : meta.getLore();
-            if (!lore.contains(ChatColor.GOLD + "Vendor: " + ChatColor.GREEN + item.getVendor()))
-            {
-                lore.add("");
-                lore.add(ChatColor.GOLD + "Vendor: " + ChatColor.GREEN + item.getVendor());
-                lore.add(ChatColor.GOLD + "Time remaining: " + ChatColor.GREEN + SUtil.formatTime(item.getTimeRemaining()));
-                lore.add(ChatColor.DARK_GRAY + "ID: " + item.getId());
-            }
+            lore.add("");
+            lore.add(ChatColor.GOLD + "Vendor: " + ChatColor.GREEN + item.getVendor());
+            lore.add(ChatColor.GOLD + "Time remaining: " + ChatColor.GREEN + SUtil.formatTime(item.getTimeRemaining()));
+            lore.add(ChatColor.GOLD + "" + item.getOfferAmount() + " Offer" + (item.getOfferAmount() == 1 ? "" : "s"));
+            lore.add(ChatColor.DARK_GRAY + "ID: " + item.getId());
             meta.setLore(lore);
             modified.setItemMeta(meta);
             super.setSlot(listing.get(i), modified);
@@ -74,7 +70,7 @@ public class TradingHouseGUI extends GUI
             super.setSlot(46, bitem);
         else
             super.setSlot(46, SUtil.createNamedItem(Material.ARROW, ChatColor.AQUA + "Previous Page"));
-        super.setSlot(49, SUtil.createNamedItem(Material.ARROW, ChatColor.AQUA + "Exit"));
+        super.setSlot(49, SUtil.createNamedItem(Material.ARROW, ChatColor.AQUA + "Back"));
         try
         {
             items.get(page * 27);
