@@ -6,7 +6,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.tfsmp.smptradinghouse.command.Command_clearoffers;
 import org.tfsmp.smptradinghouse.command.Command_cleartradeids;
-import org.tfsmp.smptradinghouse.command.Command_opentradingmenu;
+import org.tfsmp.smptradinghouse.command.Command_trade;
 import org.tfsmp.smptradinghouse.command.Command_tradinghousetest;
 import org.tfsmp.smptradinghouse.config.Config;
 import org.tfsmp.smptradinghouse.gui.GUIInteraction;
@@ -48,7 +48,7 @@ public final class SMPTradingHouse extends JavaPlugin
 
     private void loadCommands()
     {
-        this.getCommand("opentradingmenu").setExecutor(new Command_opentradingmenu());
+        this.getCommand("trade").setExecutor(new Command_trade());
         this.getCommand("tradinghousetest").setExecutor(new Command_tradinghousetest());
         this.getCommand("clearoffers").setExecutor(new Command_clearoffers());
         this.getCommand("cleartradeids").setExecutor(new Command_cleartradeids());

@@ -5,8 +5,10 @@ api-version: 1.13
 authors: [super]
 description: The workings of TotalFreedom SMP's Trading House.
 commands:
-  opentradingmenu:
-    aliases: [otm]
+  trade:
+    description: Open the trade house.
+    usage: /<command>
+    aliases: [tradehouse,th,tradinghouse]
   tradinghousetest:
     aliases: [tht]
   clearoffers:

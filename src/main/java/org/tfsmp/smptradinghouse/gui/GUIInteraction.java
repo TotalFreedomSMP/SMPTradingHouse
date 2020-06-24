@@ -94,6 +94,12 @@ public class GUIInteraction implements Listener
                 player.sendMessage(ChatColor.RED + "That item cannot be found.");
                 return;
             }
+            if (item.getVendor().equals(player.getName()))
+            {
+                player.closeInventory();
+                player.sendMessage(ChatColor.RED + "You cannot make an offer on your own trade!");
+                return;
+            }
             new TradeOfferGUI(item).open(player);
             return;
         }
