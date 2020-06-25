@@ -1,5 +1,6 @@
 package org.tfsmp.smptradinghouse;
 
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -14,6 +15,10 @@ import org.tfsmp.smptradinghouse.item.TItem;
 import org.tfsmp.smptradinghouse.player.JoinListener;
 import org.tfsmp.smptradinghouse.player.SPlayer;
 import org.tfsmp.smptradinghouse.util.SLog;
+
+import javax.xml.bind.Marshaller;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class SMPTradingHouse extends JavaPlugin
 {
@@ -80,6 +85,17 @@ public final class SMPTradingHouse extends JavaPlugin
                         player.addPickupItem(item.getItem());
                         player.removeTrade(item);
                         player.saveData();
+                        for (ItemStack offer : item.getOffers())
+                        {
+                            if (!offer.hasItemMeta())
+                                continue;
+                            if (!offer.getItemMeta().hasLore())
+                                continue;
+                            List<String> lore = offer.getItemMeta().getLore();
+                            SPlayer sPlayer = SPlayer.getOfflinePlayer(lore.get(lore.size() - 1));
+                            offer.getItemMeta().setLore(new ArrayList<>());
+                            sPlayer.addPickupItem(offer);
+                        }
                         plugin.trading.set(String.valueOf(item.getId()), null);
                         plugin.trading.save();
                     }
